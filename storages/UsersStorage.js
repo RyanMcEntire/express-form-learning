@@ -1,12 +1,31 @@
 class UsersStorage {
   constructor() {
-    this.storage = {};
-    this.id = 0;
+    this.storage = {
+      0: {
+        id: 0,
+        firstName: "john",
+        lastName: "doe",
+        email: "johndoe@email.com",
+        age: 48,
+        bio: "I like walking with my wife Jane.",
+      },
+      1: {
+        id: 1,
+        firstName: "jane",
+        lastName: "doe",
+        email: "janedoe@email.com",
+        age: 47,
+        bio: "I like walking with my dog Spike.",
+      },
+    };
+    this.id = 2;
   }
 
   addUser({ firstName, lastName, email, age, bio }) {
     const id = this.id;
     this.storage[id] = { id, firstName, lastName, email, age, bio };
+
+    console.log("getUsers()", this.getUsers());
     this.id++;
   }
 
@@ -27,19 +46,9 @@ class UsersStorage {
   }
 
   findUserByName(userName) {
+    console.log("using findUserByName");
     for (const userId in this.storage) {
       const user = this.storage[userId];
-      console.log(
-        "(from findUserByName) ",
-        "user.firstName: ",
-        user.firstName,
-        "userName.firstName: ",
-        userName.firstName,
-        "user.lastName: ",
-        user.lastName,
-        "userName.lastName: ",
-        userName.lastName,
-      );
       if (
         user.firstName === userName.firstName &&
         user.lastName === userName.lastName
@@ -66,12 +75,13 @@ class UsersStorage {
             "user.firstName: ",
             user.firstName,
             "user.lastName: ",
-            user.lastName,
+            user.lastName
           );
           if (user.firstName === first && user.lastName === last) {
+            console.log("above name is a match");
             userID = user.id;
           } else {
-            console.log("name didn't match");
+            console.log("above name didn't match");
           }
         });
       } else {

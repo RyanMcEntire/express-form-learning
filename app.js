@@ -1,9 +1,9 @@
 const express = require("express");
-const app = express();
 const usersRouter = require("./routes/usersRouter");
 const flash = require("connect-flash");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
